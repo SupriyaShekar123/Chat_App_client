@@ -1,53 +1,41 @@
-import React, { useEfffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import Button from "@material-ui/core/Button";
-
-// import { makeStyles } from "@material-ui/core/styles";
-// import TextField from "@material-ui/core/TextField";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
-// import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-// import CssBaseline from "@material-ui/core/CssBaseline";
-// import Typography from "@material-ui/core/Typography";
-// import Container from "@material-ui/core/Container";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     "& > *": {
-//       margin: theme.spacing(1),
-//       width: "25ch",
-//     },
-//   },
-// }));
+import "./Join.css";
 
 export default function Join() {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
-  //const classes = useStyles();
 
   return (
-    <div>
+    <div className='joinCointainer'>
       <form>
-        <label>Name</label>
+        <label className='joinlabel '>Name</label>
         <input
+          className='name'
           type='text'
           placeholder='Name'
           required
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        <label>Room</label>
+        <label className='joinlabel '>Room</label>
         <input
+          className='name'
           type='text'
           placeholder='Room'
           required
           value={room}
           onChange={(event) => setRoom(event.target.value)}
         />
-        <Link to={"/Chat"}>
-          <button className={"button mt-20"} type='submit'>
+
+        <Link
+          onClick={(e) =>
+            !name || !room
+              ? e.preventDefault(alert("Please Fill in the required fields"))
+              : null
+          }
+          to={`/chat?name=${name}&room=${room}`}>
+          <button type='submit' className='joinsubmit'>
             Sign In
           </button>
         </Link>
