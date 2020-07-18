@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import Voice from "../Voice";
 import "./Chat.css";
 import Input from "../Input/Input";
+import Text from "../Text/Text";
 
 let socket;
 
@@ -61,7 +62,7 @@ const Chat = ({ location }) => {
 
         <Voice />
       </div>
-      {/* <TextContainer users={users} /> */}
+      <Text users={users} />
     </div>
   );
 };
