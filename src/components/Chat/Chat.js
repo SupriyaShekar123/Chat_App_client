@@ -5,6 +5,7 @@ import Voice from "../Voice";
 import "./Chat.css";
 import Input from "../Input/Input";
 import Text from "../Text/Text";
+import Room from "../RoomBar/Room";
 
 let socket;
 
@@ -52,8 +53,8 @@ const Chat = ({ location }) => {
   return (
     <div className='chat_container '>
       <div className='inner_container'>
-        {/* <InfoBar room={room} />
-        <Messages messages={messages} name={name} /> */}
+        <Room room={room} />
+        {/* <Messages messages={messages} name={name} /> */}
         <Input
           message={message}
           setMessage={setMessage}
