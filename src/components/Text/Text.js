@@ -2,7 +2,7 @@ import React from "react";
 
 //import onlineIcon from "../../icons/onlineIcon.png";
 
-//import './Text.css';
+import "./Text.css";
 
 const Text = ({ users }) => (
   <div className='textContainer'>

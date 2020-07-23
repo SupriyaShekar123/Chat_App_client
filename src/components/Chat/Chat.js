@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
-import Voice from "../Voice";
+import Voice from "../Voice/Voice";
 import "./Chat.css";
 import Input from "../Input/Input";
 import Text from "../Text/Text";
@@ -15,8 +15,9 @@ const Chat = ({ location }) => {
   const [room, setRoom] = useState("");
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
+
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = "http://localhost:5000/";
+  const ENDPOINT = "http://localhost:5000";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -45,24 +46,42 @@ const Chat = ({ location }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-
+    console.log("MESSA GE ", message);
     if (message) {
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
 
+  const test = (mesage) => {
+    console.log("Hi there ", mesage);
+    setMessage(mesage);
+  };
+  // const sendVoice = (event) => {
+  //   event.preventDefault();
+
+  //   if (voice) {
+  //     socket.emit("sendVoice", voice, () => setVoice(""));
+  //   }
+  // };
+
   return (
     <div className='chat_container '>
-      <Room room={room} />
-      <Messages messages={messages} name={name} />
-      <div className='inner_container'>
-        <Input
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-        />
+      <div className='Chat_room'>
+        <Room room={room} />
+      </div>
 
-        <Voice />
+      <div>
+        <Messages messages={messages} name={name} />
+      </div>
+      <div className='inner_container'>
+        <div>
+          <Voice message={test} />
+          <Input
+            message={message}
+            setMessage={setMessage}
+            sendMessage={sendMessage}
+          />
+        </div>
       </div>
       <Text users={users} />
     </div>
